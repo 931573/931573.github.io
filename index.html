@@ -3,8 +3,10 @@
 <html lang = "de">
     <head>
         <meta charset="utf-8">
-
+        <!--<script src = "model.js"></script>-->
         <title>Tutorial calculator</title>
+        <script defer src="model.js"></script>
+
     </head>
     <header>
         <div>
@@ -15,6 +17,11 @@
 
 
     <body>
-        <input type="time" id="appt" name="appt" min="08:00" max="19:00" required />
+
+        <input type="text" id="room">
+        <input type="text" id="name">
+        <input type="time" id="appt" min="08:00" max="19:00" required />
+        <button>add tutorial</button> <br> <br>
+        <button id = "start_contest"> start contest</button>
     </body>
 </html>
