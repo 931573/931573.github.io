@@ -1,19 +1,42 @@
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+@media (max-device-width: 650px) {
+    body {
+        padding-left: 5%;
+        padding-right: 5%;
+        display: grid;
+        grid-row-gap: 20px;
+        grid-template-columns: 1fr ;
+        justify-content: center;
+        grid-column-gap: 30px;   
+    }
 }
 
-#tutorial {
+@media (min-device-width: 651px) {
+    body {
+        padding-left: 5%;
+        padding-right: 5%;
+        display: grid;
+        grid-row-gap: 20px;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-content: center;
+        grid-column-gap: 30px;   
+    }
+}
+
+
+
+
+.tutorial {
+    margin-right: 0px;
+    margin-left: 0px;
     border-radius: 25px;
     padding: 20px; 
     color: white;
     display: grid;
-    width: max(250px,25%);
+    min-width: 250px;
     background-image: linear-gradient(to bottom right, hsla(196, 79%, 35%, 0.953), rgba(2, 188, 110, 0.945));
 }
 
-#title {
+.title {
     grid-row: 1;
     font-weight: bold;
     font-family: fantasy;
@@ -21,18 +44,18 @@ body {
     margin-bottom: 10px;
     margin-top: 15px;
 }
-#stars {
+.stars {
     grid-row:  2;
     margin-bottom: 20px;
     font-size:x-large
 
 }
-#day {
+.day {
     grid-row: 3;
     margin: 0px;
 }
 
-#room {
+.room {
     grid-row: 4;
     margin: 0px;
 }
