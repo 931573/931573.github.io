@@ -6,21 +6,11 @@
         grid-row-gap: 20px;
         grid-template-columns: 1fr;
         justify-content: center;
-        grid-column-gap: 30px;   
+        grid-column-gap: 30px;
     }
 
 }
 
-#firstTutorial {
-    grid-column: span 3;
-    height: 200px;
-}
-
-
-#secondTutorial {
-    grid-column: span 3;
-    height: 200px;
-}
 @media (min-device-width: 501px) {
     body {
         padding-left: 5%;
@@ -28,11 +18,24 @@
         display: grid;
         grid-row-gap: 20px;
         grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
         justify-content: center;
         grid-column-gap: 30px; 
         background-color: #02001d;  
     }
 }
+
+#firstTutorial {
+    grid-column: span 3;
+    min-height: 200px;
+}
+
+
+#secondTutorial {
+    grid-column: span 3;
+    min-height: 200px;
+}
+
 
 
 .tutorial {
@@ -46,7 +49,7 @@
     background-image: linear-gradient(to bottom right, hsla(196, 79%, 35%, 0.953), rgba(2, 188, 110, 0.945));
 }
 
-.title {
+.tutorial > .title {
     grid-row: 1;
     font-weight: bold;
     font-family: fantasy;
@@ -54,22 +57,22 @@
     margin-bottom: 10px;
     margin-top: 15px;
 }
-.stars {
+.tutorial > .stars {
     grid-row:  2;
     margin-bottom: 20px;
     font-size:x-large
 
 }
-.day {
+.tutorial > .day {
     grid-row: 3;
     margin: 0px;
 }
 
-.room {
+.tutorial > .room {
     grid-row: 4;
     margin: 0px;
 }
-.inner {
+.tutorial > .inner {
     font-size: medium;
     font-family: fantasy;
 }

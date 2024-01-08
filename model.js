@@ -7,6 +7,7 @@ class tutorial{
         this.day = day;
         this.wins = 0;
         this.loses = 0;
+        this.stars = 0;
     }
 }
 

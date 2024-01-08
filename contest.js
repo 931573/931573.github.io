@@ -1,15 +1,3 @@
-
-var tutorialsJson = Object.keys(sessionStorage);
-var tutorialObjects = []
-for (let i = 0; i < tutorialsJson.length; i++) {
-    tutorialObjects.push(JSON.parse(sessionStorage.getItem(tutorialsJson[i])));
-    console.log(tutorialObjects[i]);
-}
-
-
-
-
-
 class swissTournament {
     constructor(){
         this.ranking = tutorialObjects;
@@ -71,10 +59,6 @@ class swissTournament {
             this.pointer = this.lowerCutoff;
 
         }
-        console.log(this.pointer);
-        console.log(this.lowerCutoff);
-        console.log(this.uppercutoff);
-        console.log(this.ranking);
         this.playGame();
     }
 
@@ -82,26 +66,32 @@ class swissTournament {
     this.secondTutorial.remove();
     this.firstTutorial.remove();
     
-
-    var resultDiv = document.getElementById("result");
+    this.addStars();
+    var resultDiv = document.body;
     for (let i = 0; i < this.ranking.length; i ++) {
-        var result = document.createElement("div");
-        result.setAttribute("id", "element")
-        result.appendChild(document.createTextNode(this.ranking[i]));
-        resultDiv.appendChild(result);
-    }
-    
+        resultDiv.appendChild(writeTutorial(this.ranking[i]));
+        }
     }
 
+    addStars() {
+        return;
+    }
 
     playGame() {
         if (this.pointer == this.uppercutoff-1) {
-            this.secondTutorial.innerHTML = this.ranking[0].title;
+            let randomOpponent = Math.floor((Math.random() * this.ranking.length)-1);
+            this.secondTutorial.getElementsByClassName("title")[0].innerHTML = this.ranking[randomOpponent].title;
+            this.secondTutorial.getElementsByClassName("day")[0].innerHTML = this.ranking[randomOpponent].day + " "+ this.ranking[this.pointer+1].time;
+            this.secondTutorial.getElementsByClassName("room")[0].innerHTML = this.ranking[randomOpponent].room;
         }
         else {
-            this.secondTutorial.innerHTML = this.ranking[this.pointer+1].title;
+            this.secondTutorial.getElementsByClassName("title")[0].innerHTML = this.ranking[this.pointer+1].title;
+            this.secondTutorial.getElementsByClassName("day")[0].innerHTML = this.ranking[this.pointer+1].day + " " +this.ranking[this.pointer+1].time;
+            this.secondTutorial.getElementsByClassName("room")[0].innerHTML = this.ranking[this.pointer+1].room;        
         }
-        this.firstTutorial.innerHTML = this.ranking[this.pointer].title;
+        this.firstTutorial.getElementsByClassName("title")[0].innerHTML = this.ranking[this.pointer].title;
+        this.firstTutorial.getElementsByClassName("day")[0].innerHTML = this.ranking[this.pointer].day + " "    + this.ranking[this.pointer+1].time;
+        this.firstTutorial.getElementsByClassName("room")[0].innerHTML = this.ranking[this.pointer+1].room;
     }
 
 
@@ -140,9 +130,42 @@ class swissTournament {
     }
 }
 
+
+function writeTutorial(tutorial) {
+    var tutorialDiv = document.createElement("div");
+    tutorialDiv.setAttribute("class","tutorial");
+
+    var tempElement = document.createElement("h1");
+    tempElement.setAttribute("class", "title");
+    tempElement.appendChild(document.createTextNode(tutorial.title));
+    tutorialDiv.appendChild(tempElement);
+
+    tempElement = document.createElement("p");
+    tempElement.setAttribute("class", "stars inner");
+    tempElement.appendChild(document.createTextNode(tutorial.stars));
+    tutorialDiv.appendChild(tempElement);
+
+    tempElement = document.createElement("p");
+    tempElement.setAttribute("class", "day inner");
+    tempElement.appendChild(document.createTextNode(tutorial.day));
+    tutorialDiv.appendChild(tempElement);
+    
+    tempElement = document.createElement("p");
+    tempElement.setAttribute("class", "room inner");
+    tempElement.appendChild(document.createTextNode(tutorial.room));
+    tutorialDiv.appendChild(tempElement);
+
+    return tutorialDiv;
+}
+
+
+var tutorialsJson = Object.keys(sessionStorage);
+var tutorialObjects = []
+for (let i = 0; i < tutorialsJson.length; i++) {
+    tutorialObjects.push(JSON.parse(sessionStorage.getItem(tutorialsJson[i])));
+}
+
 var ourSwissTournament = new swissTournament();
-
-
 
 var firstTutorial = document.getElementById('firstTutorial');
 var secondTutorial = document.getElementById('secondTutorial');
@@ -152,7 +175,3 @@ firstTutorial.onclick = () => {
 secondTutorial.onclick = () => {
     ourSwissTournament.clickSecond();
 }
-
-
-
-console.log(ourSwissTournament);
