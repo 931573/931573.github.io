@@ -74,7 +74,42 @@ class swissTournament {
     }
 
     addStars() {
-        return;
+        let upperPointer = this.ranking.length-1;
+        let lowerPointer = 0;
+        let maxValue = 3;
+        let amounfOfThree = Math.round((upperPointer+1 - maxValue*2) /2);
+        let upperStar = 1;
+        let lowerStar = 5;
+
+        while (upperPointer > lowerPointer) {
+            if (maxValue > 0) {
+                this.ranking[lowerPointer].stars = lowerStar;
+                this.ranking[upperPointer].stars = upperStar;
+                maxValue--;
+                upperPointer--;
+                lowerPointer++;
+            }
+            else if (upperPointer-lowerPointer <= amounfOfThree) {
+                upperStar = 3;
+                lowerStar = 3;
+                this.ranking[lowerPointer].stars = lowerStar;
+                this.ranking[upperPointer].stars = upperStar;
+                upperPointer--;
+                lowerPointer++;
+            } else {
+                upperStar = 4;
+                lowerPointer = 2;
+                this.ranking[lowerPointer].stars = lowerStar;
+                this.ranking[upperPointer].stars = upperStar;
+                upperPointer--;
+                lowerPointer++;
+            }
+        }
+
+        if (upperPointer == lowerPointer) {
+            this.ranking[upperPointer].stars = 3;
+        }
+
     }
 
     playGame() {
