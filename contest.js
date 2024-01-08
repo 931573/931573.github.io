@@ -1,8 +1,8 @@
 
-var tutorialsJson = Object.values(sessionStorage);
+var tutorialsJson = Object.keys(sessionStorage);
 var tutorialObjects = []
 for (let i = 0; i < tutorialsJson.length; i++) {
-    tutorialObjects.push(JSON.parse(tutorialsJson[i]));
+    tutorialObjects.push(JSON.parse(sessionStorage.getItem(tutorialsJson[i])));
     console.log(tutorialObjects[i]);
 }
 
@@ -29,7 +29,7 @@ class swissTournament {
     }
 
     isDone()  {
-        return this.lowerCutoff == this.uppercutoff-1;
+        return this.lowerCutoff == this.uppercutoff;
     }
 
 
@@ -60,45 +60,64 @@ class swissTournament {
 
 
     increment() {
+
         if (this.pointer == this.uppercutoff) {
             this.sortRanking();
             this.calculateCutoffs();
             if (this.isDone()) {
-                showResult();
+                this.showResult();
                 return;
             }
             this.pointer = this.lowerCutoff;
 
         }
+        console.log(this.pointer);
+        console.log(this.lowerCutoff);
+        console.log(this.uppercutoff);
+        console.log(this.ranking);
         this.playGame();
     }
 
+    showResult() {
+    this.secondTutorial.remove();
+    this.firstTutorial.remove();
+    
+
+    var resultDiv = document.getElementById("result");
+    for (let i = 0; i < this.ranking.length; i ++) {
+        var result = document.createElement("div");
+        result.setAttribute("id", "element")
+        result.appendChild(document.createTextNode(this.ranking[i]));
+        resultDiv.appendChild(result);
+    }
+    
+    }
 
 
     playGame() {
         if (this.pointer == this.uppercutoff-1) {
-            this.secondTutorial.innerHTML = this.ranking[0].name;
+            this.secondTutorial.innerHTML = this.ranking[0].title;
         }
         else {
-            this.secondTutorial.innerHTML = this.ranking[this.pointer+1].name;
+            this.secondTutorial.innerHTML = this.ranking[this.pointer+1].title;
         }
-        this.firstTutorial.innerHTML = this.ranking[this.pointer].name;
+        this.firstTutorial.innerHTML = this.ranking[this.pointer].title;
     }
 
 
     sortRanking() {
         this.ranking.sort(function(firstTutorial,secondTutorial) {
             if (firstTutorial.wins > secondTutorial.loses) {
-                return 1;
+                return -1;
             }
             if (secondTutorial.wins > firstTutorial.wins) {
-                return -1;
+                return 1;
             }
             if (firstTutorial.loses > secondTutorial.loses) {
-                return -1;
+                return 1;
             }
             if (secondTutorial.loses > firstTutorial.loses) {
-                return 1;
+                return -1;
             }
             return 0;
         })
@@ -108,16 +127,16 @@ class swissTournament {
         let lowerIncrease = 0;
         let upperIncrease = 0;
         for (let i = this.lowerCutoff; i < this.uppercutoff; i++) {
+
             if (this.ranking[i].wins == this.cutOff) {
                 lowerIncrease++;
             }
-            else if (this.ranking[i].loses < this.cutOff) {
+            else if (this.ranking[i].loses == this.cutOff) {
                 upperIncrease++;
-                break;
             }
         }
         this.lowerCutoff += lowerIncrease;
-        this.uppercutoff += upperIncrease;
+        this.uppercutoff -= upperIncrease;
     }
 }
 
