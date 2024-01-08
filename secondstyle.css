@@ -1,16 +1,15 @@
-@media (max-device-width: 650px) {
+@media (max-device-width: 500px) {
     body {
         padding-left: 5%;
         padding-right: 5%;
         display: grid;
         grid-row-gap: 20px;
-        grid-template-columns: 1fr ;
+        grid-template-columns: 1fr 1fr;
         justify-content: center;
         grid-column-gap: 30px;   
     }
 }
 
-@media (min-device-width: 651px) {
     body {
         padding-left: 5%;
         padding-right: 5%;
@@ -20,7 +19,6 @@
         justify-content: center;
         grid-column-gap: 30px;   
     }
-}
 
 
 
