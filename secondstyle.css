@@ -1,4 +1,4 @@
-@media (max-device-width: 500px) {
+@media (max-device-width: 700px) {
     body {
         padding-left: 5%;
         padding-right: 5%;
@@ -12,19 +12,19 @@
 }
 
 
-    body {
-        padding-left: 5%;
-        padding-right: 5%;
-        display: grid;
-        grid-row-gap: 20px;
-        grid-template-columns: 1fr 1fr 1fr;
-        justify-content: center;
-        grid-column-gap: 30px; 
-        background-color: #02001d;  
-    }
 
 
 
+body {
+    padding-left: 5%;
+    padding-right: 5%;
+    display: grid;
+    grid-row-gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    grid-column-gap: 30px; 
+    background-color: #02001d;  
+}
 
 .tutorial {
     margin-right: 0px;
