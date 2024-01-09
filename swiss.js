@@ -236,48 +236,36 @@ function writeTutorial(tutorial) {
     return tutorialDiv;
 }
 
+// asks gyro permission for ios
 function askPermission(){
     if (DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === "function") {
         DeviceMotionEvent.requestPermission();
     }
 }
-
-var tutorialsJson = Object.keys(sessionStorage);
-var tutorialObjects = []
-for (let i = 0; i < tutorialsJson.length; i++) {
-    tutorialObjects.push(JSON.parse(sessionStorage.getItem(tutorialsJson[i])));
-}
-
-var ourSwissTournament = new swissTournament();
-
-var firstTutorial = document.getElementById('firstTutorial');
-var secondTutorial = document.getElementById('secondTutorial');
-
 var gyroscope;
 try {
     gyroscope = new Gyroscope({ frequency: 60 });
-
 } catch (e) {
 }
 
-
+// timer to wait after one gesture has been done
 var timer = 0;
 var threshold = 120;
 if (gyroscope != null) {
 
     gyroscope.addEventListener("reading", (e) => {
-        var data = gyroscope.x;
         timer++;
         if (timer < threshold) {
             return;
         }
-        if (data > 1.2) {
-            gyroPlus();
+        if ( gyroscope.x > 1.2) {
+            positiveGyro();
+            // resets timer to wait for next gesture
             timer = 0;
         }
-        
         else if (data < -1.2) {
-            gyroNegative();
+            negativeGyro();
+            // resets timer to wait for next gesture
             timer = 0;
         }
     });
@@ -287,15 +275,29 @@ if (gyroscope != null) {
     document.getElementById("gyro").remove();
 
 }
-function gyroPlus() {
+
+// handles positive gyro data
+function positiveGyro() {
     ourSwissTournament.clickFirst();
 }
-
-function gyroNegative() {
+// handles negative gyro data
+function negativeGyro() {
     ourSwissTournament.clickSecond();
 }
 
 
+// gets tutoral from storage
+var tutorialsJson = Object.keys(sessionStorage);
+var tutorialObjects = []
+for (let i = 0; i < tutorialsJson.length; i++) {
+    tutorialObjects.push(JSON.parse(sessionStorage.getItem(tutorialsJson[i])));
+}
+
+var ourSwissTournament = new swissTournament();
+
+// handle tutorial presses
+var firstTutorial = document.getElementById('firstTutorial');
+var secondTutorial = document.getElementById('secondTutorial');
 firstTutorial.onclick = () => {
     ourSwissTournament.clickFirst();
 }

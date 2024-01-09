@@ -17,10 +17,14 @@
     }
     
     #date {
-        font-size: 2.5em;
+        padding: 3em;
         align-self: center;
+        width: 100%;
+        margin-bottom: 50px;
+        font-size: 2.5em;
     }
     #time {
+        padding: 3em;
         align-self: center;
         width: 100%;
         margin-bottom: 50px;
@@ -46,10 +50,17 @@
         margin-top: 30px;
         margin-bottom: 30px;
     }
-    
+
+    #date {
+        margin-bottom: 50px;
+        font-size: 2.5em;
+        padding: 10em;
+    }
+
     #time {
         margin-bottom: 50px;
         font-size: 2.5em;
+        padding: 10em;
     }
     
     #start_contest {
@@ -73,15 +84,9 @@ input {
     text-align: center;
     background-image: linear-gradient(to bottom left, hsla(243, 96%, 9%, 0.953), rgba(0, 49, 16, 0.945));
     border: 0px;
-
+    padding: 10em;
     color: white;
     font-size: 2em;
-}
-
-#date {
-    margin-bottom: 50px;
-    font-size: 2.5em;
-
 }
 
 button {

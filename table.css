@@ -1,14 +1,15 @@
-@media (max-device-width: 480px) {
+/* This css decorates the display of tutorials in a flex grid layout responsivly */
 
+/* mobile devices*/
+@media (max-device-width: 480px) {
     .tutorialTable {
         display: grid;
         grid-template-columns: 1fr;
         grid-row-gap: 20px;
     }
-
 }
 
-
+/* Ipads */ 
 @media (min-device-width: 481px) and (max-device-width: 768px) {
     .tutorialTable {
         display: grid;
@@ -17,7 +18,7 @@
         grid-row-gap: 20px;
     }
 }
-
+/* laptops */
 @media (min-device-width: 769px)  {
     .tutorialTable {
         display: grid;
@@ -26,8 +27,6 @@
         grid-row-gap: 20px;
     }
 }
-
-
 
 .tutorial {
     border-radius: 25px;

@@ -8,15 +8,14 @@ body {
     justify-content: center;
 }
 
-
 .test {
-    
     display: flex;
     flex-direction: column;
     padding-left: 10%;
     padding-right: 10%;
 }
 
+/*manages the current contesting tutorials*/
 .chooserTable {
     display: flex;
     flex-direction: column;
@@ -24,6 +23,7 @@ body {
 
 }
 
+/*both tutorials*/
 .chooser {
     border-radius: 25px;
     padding: 20px; 
@@ -39,7 +39,7 @@ body {
 #secondTutorial {
     margin-bottom: 150px;
 }
-
+/* gyro display*/
 #gyro {
     background-image: linear-gradient(to bottom right, hsla(196, 79%, 35%, 0.953), rgba(2, 188, 110, 0.945));
     color: white;
