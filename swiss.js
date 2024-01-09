@@ -206,13 +206,10 @@ function writeTutorial(tutorial) {
     return tutorialDiv;
 }
 
-
-
 function askPermission(){
-    if (DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === "function"
-      ) {
+    if (DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === "function") {
         DeviceMotionEvent.requestPermission();
-      }
+    }
 }
 
 var tutorialsJson = Object.keys(sessionStorage);
