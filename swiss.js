@@ -65,7 +65,9 @@ class swissTournament {
     showResult() {
     this.secondTutorial.remove();
     this.firstTutorial.remove();
-    document.getElementById("gyro").remove;
+    if (gyroscope != null) {
+        document.getElementById("gyro").remove;
+    } 
     this.addStars();
     var resultDiv = document.getElementsByClassName("tutorialTable")[0];
     for (let i = 0; i < this.ranking.length; i ++) {
@@ -113,11 +115,14 @@ class swissTournament {
     }
 
     playGame() {
+        console.log(this.pointer);
+        console.log(this.ranking);
+
         if (this.pointer == this.uppercutoff-1) {
             let randomOpponent = Math.floor((Math.random() * this.ranking.length)-2)
             randomOpponent = Math.max(0,randomOpponent);
             this.secondTutorial.getElementsByClassName("title")[0].innerHTML = this.ranking[randomOpponent].title;
-            this.secondTutorial.getElementsByClassName("day")[0].innerHTML = this.ranking[randomOpponent].day + " "+ this.ranking[this.pointer+1].time;
+            this.secondTutorial.getElementsByClassName("day")[0].innerHTML = this.ranking[randomOpponent].day + " "+ this.ranking[randomOpponent].time;
             this.secondTutorial.getElementsByClassName("room")[0].innerHTML = this.ranking[randomOpponent].room;
         }
         else {
@@ -126,8 +131,8 @@ class swissTournament {
             this.secondTutorial.getElementsByClassName("room")[0].innerHTML = this.ranking[this.pointer+1].room;        
         }
         this.firstTutorial.getElementsByClassName("title")[0].innerHTML = this.ranking[this.pointer].title;
-        this.firstTutorial.getElementsByClassName("day")[0].innerHTML = this.ranking[this.pointer].day + " "    + this.ranking[this.pointer+1].time;
-        this.firstTutorial.getElementsByClassName("room")[0].innerHTML = this.ranking[this.pointer+1].room;
+        this.firstTutorial.getElementsByClassName("day")[0].innerHTML = this.ranking[this.pointer].day + " "    + this.ranking[this.pointer].time;
+        this.firstTutorial.getElementsByClassName("room")[0].innerHTML = this.ranking[this.pointer].room;
     }
 
 
@@ -202,6 +207,14 @@ function writeTutorial(tutorial) {
 }
 
 
+
+function askPermission(){
+    if (DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === "function"
+      ) {
+        DeviceMotionEvent.requestPermission();
+      }
+}
+
 var tutorialsJson = Object.keys(sessionStorage);
 var tutorialObjects = []
 for (let i = 0; i < tutorialsJson.length; i++) {
@@ -231,24 +244,22 @@ if (gyroscope != null) {
         if (timer < threshold) {
             return;
         }
-        ourSwissTournament.secondTutorial.getElementsByClassName("title")[0].innerHTML = gyroscope.x;
-        ourSwissTournament.firstTutorial.getElementsByClassName("title")[0].innerHTML = gyroscope.x > 1.2;
-        if (data > 0.2) {
-            ourSwissTournament.secondTutorial.getElementsByClassName("title")[0].innerHTML = gyroscope.x;
+        if (data > 1.2) {
             gyroPlus();
             timer = 0;
         }
         
-        else if (data < -0.2) {
+        else if (data < -1.2) {
             gyroNegative();
             timer = 0;
         }
     });
     gyroscope.start();
+    document.getElementById("gyro").innerHTML = "Gyro choice is active";
+} else {
+    document.getElementById("gyro").remove();
 
-    document.getElementById("gyro").innerHTML = "Gyro choise is active.";
 }
-
 function gyroPlus() {
     ourSwissTournament.clickFirst();
 }

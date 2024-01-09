@@ -1,4 +1,3 @@
-
 body {
     color: white;
     padding-left: 5%;
@@ -40,6 +39,16 @@ body {
 #secondTutorial {
     margin-bottom: 150px;
 }
+
+#gyro {
+    background-image: linear-gradient(to bottom right, hsla(196, 79%, 35%, 0.953), rgba(2, 188, 110, 0.945));
+    color: white;
+    text-align: center;
+    align-self: center;
+    border-radius: 25px;
+    padding: 5px;
+}
+
 
 .chooser > .day {
     margin-top: 100px;

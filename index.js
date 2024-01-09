@@ -31,9 +31,18 @@ addButton.onclick = () => {
 
     var newTutorial = new tutorial(name.value, room.value, time.value, weekday[asDate.getDay()]);
 
+    if (newTutorial.name === "" || newTutorial.room === "" || newTutorial.time === "" || newTutorial.day === "") {
+        alert("Please fill out all inputs");
+        return;
+    }
+
+    if (sessionStorage.getItem(JSON.stringify(newTutorial)) != null) {
+        alert("Tutorial already added");
+        return;
+    }
     var tutorialDiv = writeTutorial(newTutorial);
-    document.getElementsByClassName("tutorialTable")[0].appendChild(tutorialDiv);
     sessionStorage.setItem(JSON.stringify(newTutorial), JSON.stringify(newTutorial));
+    document.getElementsByClassName("tutorialTable")[0].appendChild(tutorialDiv);
     name.value = "";    
     room.value = "";
     time.value = "";
