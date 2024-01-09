@@ -223,12 +223,12 @@ if (gyroscope != null) {
         if (timer < threshold) {
             return;
         }
-        if ( gyroscope.x > 1.2) {
+        if ( gyroscope.x > 1.0) {
             positiveGyro();
             // resets timer to wait for next gesture
             timer = 0;
         }
-        else if (data < -1.2) {
+        else if (data < -1.0) {
             negativeGyro();
             // resets timer to wait for next gesture
             timer = 0;
