@@ -81,3 +81,13 @@ function writeTutorial(tutorial) {
 
     return tutorialDiv;
 }
+
+
+var tutorialsJson = Object.keys(sessionStorage);
+for (let i = 0; i < tutorialsJson.length; i++) {
+    addtoTable(JSON.parse(sessionStorage.getItem(tutorialsJson[i])));
+}
+
+function addtoTable(tutDiv) {
+    document.getElementsByClassName("tutorialTable")[0].appendChild(writeTutorial(tutDiv));
+}
