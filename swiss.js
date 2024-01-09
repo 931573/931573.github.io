@@ -226,10 +226,9 @@ var threshold = 120;
 if (gyroscope != null) {
 
     gyroscope.addEventListener("reading", (e) => {
-        
+        ourSwissTournament.firstTutorial.getElementsByClassName("title")[0].innerHTML = gyroscope.x;
         timer++;
         document.getElementsByClassName("sensor")[0].innerHTML = gyroscope.x;
-
         if (timer < threshold) {
             return;
         }
@@ -255,3 +254,4 @@ firstTutorial.onclick = () => {
 secondTutorial.onclick = () => {
     ourSwissTournament.clickSecond();
 }
+

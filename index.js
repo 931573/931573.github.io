@@ -12,7 +12,8 @@ class tutorial{
 }
 
 
-const btn = document.querySelector('button');
+const btn = document.querySelector('#add');
+const reset = document.querySelector("#reset");
 const startContest = document.querySelector("#start_contest");
 const tutorials = [];
 
@@ -41,6 +42,12 @@ btn.onclick = () => {
       
     console.log(JSON.parse(sessionStorage.getItem("id1")));
 }
+
+reset.onclick = () => {
+    sessionStorage.clear();
+    location.reload(true);
+}
+
 
 startContest.onclick = () => {
     if (Object.keys(sessionStorage).length <= 2) {
