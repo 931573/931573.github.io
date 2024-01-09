@@ -1,12 +1,3 @@
-body {
-    padding-left: 5%;
-    padding-right: 5%;
-    display: flex;
-    flex-direction: column;
-    grid-row-gap: 20px;
-    background-color: #02001d;  
-}
-
 @media (max-device-width: 560px) {
     #submission {
         border-radius: 25px;
@@ -15,6 +6,7 @@ body {
         flex-flow: column;
         background-image: linear-gradient(to bottom right, hsla(196, 79%, 35%, 0.953), rgba(2, 188, 110, 0.945));
     }
+
     #submission > h1 {
         font-family: Arial;
         color: white;
@@ -24,38 +16,17 @@ body {
         margin-bottom: 30px;
     }
     
-    input {
-        border-radius: 25px;
-        margin: 5px;
-        text-align: center;
-        background-image: linear-gradient(to bottom left, hsla(243, 96%, 9%, 0.953), rgba(0, 49, 16, 0.945));
-        border: 0px;
-        color: white;
-        font-size: 2em;
-    }
-    
     #date {
-        margin-bottom: 50px;
         font-size: 2.5em;
         align-self: center;
     }
     #time {
         align-self: center;
+        width: 100%;
         margin-bottom: 50px;
         font-size: 2.5em;
     }
     
-    
-    button {
-        border-radius: 25px;
-        margin: 5px;
-        text-align: center;
-        background-image: linear-gradient(to bottom left, hsla(243, 96%, 9%, 0.953), rgba(0, 49, 16, 0.945));
-        border: 0px;
-        color: white;
-        font-size: xx-large;
-    }
-
 }
 
 @media (min-device-width: 561px)  {
@@ -76,42 +47,49 @@ body {
         margin-bottom: 30px;
     }
     
-    input {
-        border-radius: 25px;
-        margin: 5px;
-        text-align: center;
-        background-image: linear-gradient(to bottom left, hsla(243, 96%, 9%, 0.953), rgba(0, 49, 16, 0.945));
-        border: 0px;
-    
-        color: white;
-        font-size: 2em;
-    }
-    
-    #date {
-        margin-bottom: 50px;
-        font-size: 2.5em;
-    
-    }
     #time {
         margin-bottom: 50px;
         font-size: 2.5em;
-    
     }
     
-    
-    button {
-        border-radius: 25px;
-        margin: 5px;
-        text-align: center;
-        background-image: linear-gradient(to bottom left, hsla(243, 96%, 9%, 0.953), rgba(0, 49, 16, 0.945));
-        border: 0px;
-        color: white;
-        font-size: xx-large;
-    }
     #start_contest {
         grid-column: 1 / span 2;
         padding: 20px;
     }
 }
 
+body {
+    padding-left: 5%;
+    padding-right: 5%;
+    display: flex;
+    flex-direction: column;
+    grid-row-gap: 20px;
+    background-color: #02001d;  
+}
 
+input {
+    border-radius: 25px;
+    margin: 5px;
+    text-align: center;
+    background-image: linear-gradient(to bottom left, hsla(243, 96%, 9%, 0.953), rgba(0, 49, 16, 0.945));
+    border: 0px;
+
+    color: white;
+    font-size: 2em;
+}
+
+#date {
+    margin-bottom: 50px;
+    font-size: 2.5em;
+
+}
+
+button {
+    border-radius: 25px;
+    margin: 5px;
+    text-align: center;
+    background-image: linear-gradient(to bottom left, hsla(243, 96%, 9%, 0.953), rgba(0, 49, 16, 0.945));
+    border: 0px;
+    color: white;
+    font-size: xx-large;
+}

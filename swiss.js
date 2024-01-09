@@ -1,29 +1,41 @@
+// Models the ranking system of the tutorials. 
+// Based on the swiss system (https://de.wikipedia.org/wiki/Schweizer_System)
+// The systems advantage is that the real-highest and real-lowest ranked player get ranked relativly clear, in a short amount of matches.
+// As a downside players in the middle can have a ranking to real-rank missmatch.
 class swissTournament {
     constructor(){
+        // all tutorials
         this.ranking = tutorialObjects;
+        // everey tutorial below this cutoff is done competing and in its final position 
         this.lowerCutoff = 0;
-        this.uppercutoff = this.ranking.length; 
+        // every tutorial aboce or equal to this cutoff is done competing and in its final position
+        this.uppercutoff = this.ranking.length;
+
+        // always points to the first of the 2 tutorials which are currently competing
         this.pointer = 0;
-        this.cutOff = 1;
+        // every tutorial competes as long as it does not have goal wins or loses
+        this.goal = 1;
         this.firstTutorial = document.querySelector('#firstTutorial');
         this.secondTutorial = document.querySelector('#secondTutorial');
 
-
-        while(2 ** this.cutOff < this.ranking.length) {
-            this.cutOff ++;
+        // calculates cutoff for the amount of tutorials
+        while(2 ** this.goal < this.ranking.length) {
+            this.goal ++;
         }
         this.pointer = this.lowerCutoff;
-        this.playGame();
+        this.playMatch();
     }
 
+    // checks if every tutorial is ranked
     isDone()  {
         return this.lowerCutoff == this.uppercutoff;
     }
 
 
-
+    // handles pitch or click on the first current contestant
     clickFirst() {
         if (this.pointer == this.uppercutoff-1) {
+            // if only the first player was competing and the second one got filled we only consider the outcome for the first player
             this.ranking[this.pointer].wins++;
             this.pointer++;
         } else {
@@ -34,8 +46,10 @@ class swissTournament {
         this.increment();
     }
 
+    // handles pitch or click on the second current contestant
     clickSecond() {
         if (this.pointer == this.uppercutoff-1) {
+            // if only the first player was competing and the second one got filled we only consider the outcome for the first player
             this.ranking[this.pointer].loses++;
             this.pointer++;
         } else {
@@ -46,44 +60,60 @@ class swissTournament {
         this.increment();
     }
 
-
+    // increments one step of the tournament
     increment() {
-
         if (this.pointer == this.uppercutoff) {
+            // prepares everything for the next round
             this.sortRanking();
             this.calculateCutoffs();
             if (this.isDone()) {
+                // breaks if tournament is done
                 this.showResult();
                 return;
             }
             this.pointer = this.lowerCutoff;
 
         }
-        this.playGame();
+        this.playMatch();
     }
 
+    // changes html to display results
     showResult() {
-    this.secondTutorial.remove();
-    this.firstTutorial.remove();
-    if (gyroscope != null) {
-        document.getElementById("gyro").remove;
-    } 
-    this.addStars();
-    var resultDiv = document.getElementsByClassName("tutorialTable")[0];
-    for (let i = 0; i < this.ranking.length; i ++) {
-        resultDiv.appendChild(writeTutorial(this.ranking[i]));
+        this.secondTutorial.remove();
+        this.firstTutorial.remove();
+        if (gyroscope != null) {
+            document.getElementById("gyro").remove;
+        } 
+        // adds the star ratings to the tutorials
+        this.addStars();
+        var resultDiv = document.getElementsByClassName("tutorialTable")[0];
+        for (let i = 0; i < this.ranking.length; i ++) {
+            resultDiv.appendChild(writeTutorial(this.ranking[i]));
         }
     }
 
+
+    // adds the star ratings to the tutorials
+    // we destribute them so they fit the KIT tutorial rules:
+    // there has to be an average of at least 2.5 stars
+    // its not allowed to rank more than 50% of tutorials with the same star amount
     addStars() {
         let upperPointer = this.ranking.length-1;
         let lowerPointer = 0;
+        
+        // how many tutorials will get rated with the maximum amount of stars
         let maxValue = 3;
+
+        // how many 3 stars will get distributed
+        // this needs to be below 50%
         let amounfOfThree = Math.round((upperPointer+1 - maxValue*2) /2);
+        //amount of stars for current upper and lower pointer
         let upperStar = 1;
         let lowerStar = 5;
 
         while (upperPointer > lowerPointer) {
+            // iterate from both ends and distriubutes stars
+            // according to the remaining tutorials
             if (maxValue > 0) {
                 this.ranking[lowerPointer].stars = lowerStar;
                 this.ranking[upperPointer].stars = upperStar;
@@ -107,18 +137,17 @@ class swissTournament {
                 lowerPointer++;
             }
         }
-
+        // if there was an uneven amount of tutorials
         if (upperPointer == lowerPointer) {
             this.ranking[upperPointer].stars = 3;
         }
 
     }
 
-    playGame() {
-        console.log(this.pointer);
-        console.log(this.ranking);
-
+    // displays the next competition to html
+    playMatch() {
         if (this.pointer == this.uppercutoff-1) {
+            // if there is a pointer left because of uneven contestens we let it compare to a random opponent
             let randomOpponent = Math.floor((Math.random() * this.ranking.length)-2)
             randomOpponent = Math.max(0,randomOpponent);
             this.secondTutorial.getElementsByClassName("title")[0].innerHTML = this.ranking[randomOpponent].title;
@@ -135,7 +164,7 @@ class swissTournament {
         this.firstTutorial.getElementsByClassName("room")[0].innerHTML = this.ranking[this.pointer].room;
     }
 
-
+    // sorts tutorials by more wins and loses
     sortRanking() {
         this.ranking.sort(function(firstTutorial,secondTutorial) {
             if (firstTutorial.wins > secondTutorial.loses) {
@@ -154,15 +183,16 @@ class swissTournament {
         })
     }
 
+    // checks if tutorials surpassed the win or loose goal and adjust cutoffs
     calculateCutoffs() {
         let lowerIncrease = 0;
         let upperIncrease = 0;
         for (let i = this.lowerCutoff; i < this.uppercutoff; i++) {
 
-            if (this.ranking[i].wins == this.cutOff) {
+            if (this.ranking[i].wins == this.goal) {
                 lowerIncrease++;
             }
-            else if (this.ranking[i].loses == this.cutOff) {
+            else if (this.ranking[i].loses == this.goal) {
                 upperIncrease++;
             }
         }
