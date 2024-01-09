@@ -82,7 +82,7 @@ class swissTournament {
         this.secondTutorial.remove();
         this.firstTutorial.remove();
         if (gyroscope != null) {
-            document.getElementById("gyro").remove;
+            document.getElementById("gyro").remove();
         } 
         // adds the star ratings to the tutorials
         this.addStars();
