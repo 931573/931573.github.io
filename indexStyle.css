@@ -11,10 +11,9 @@
     /* date and time are now centered, alone in a row */
     /* we also increase padding for better touch navigation */
     #date {
-        padding: 3em;
+        padding: 1em;
         align-self: center;
         width: 90%;
-        margin-bottom: 50px;
         font-size: 2.5em;
     }
     #time {
