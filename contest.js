@@ -209,21 +209,15 @@ var secondTutorial = document.getElementById('secondTutorial');
 let gyroscope = new Gyroscope({ frequency: 60 });
 
 gyroscope.addEventListener("reading", (e) => {
-    if (gyroscope.x > 0.2) {
-        positiveXGyro();
+    if (gyroscope.x > 1.2) {
+        ourSwissTournament.clickFirst();
     }
-    this.firstTutorial.getElementsByClassName("title")[0].innerHTML = gyroscope.x;
+    else if (gyroscope.x < -1.2) {
+        ourSwissTournament.clickSecond();
+    }
 });
 gyroscope.start();
 
-
-function positiveXGyro(){
-    ourSwissTournament.clickFirst();
-}
-function negativeXGyro() {
-    ourSwissTournament.clickSecond();
-}
- 
 
 firstTutorial.onclick = () => {
     ourSwissTournament.clickFirst();
