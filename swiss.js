@@ -219,12 +219,17 @@ try {
 
 } catch (e) {
 }
+
+
+var timer = 0;
+var threshold = 120;
 if (gyroscope != null) {
 
     gyroscope.addEventListener("reading", (e) => {
-    
-        timer++;
         
+        timer++;
+        document.getElementsByClassName("sensor")[0].innerHTML = gyroscope.x;
+
         if (timer < threshold) {
             return;
         }
@@ -241,8 +246,6 @@ if (gyroscope != null) {
     gyroscope.start();
 }
 
-var timer = 0;
-var threshold = 120;
 
 
 
