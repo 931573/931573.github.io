@@ -233,6 +233,7 @@ if (gyroscope != null) {
             return;
         }
         if (gyroscope.x > 1.2) {
+            ourSwissTournament.secondTutorial.getElementsByClassName("title")[0].innerHTML = gyroscope.x;
             ourSwissTournament.clickFirst();
             timer = 0;
         }

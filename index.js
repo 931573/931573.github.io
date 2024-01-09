@@ -1,4 +1,3 @@
-
 class tutorial{
     constructor(title, room, time, day) {
         this.title = title;
@@ -12,35 +11,33 @@ class tutorial{
 }
 
 
-const btn = document.querySelector('#add');
-const reset = document.querySelector("#reset");
-const startContest = document.querySelector("#start_contest");
-const tutorials = [];
+const addButton = document.querySelector('#add');
+const resetButton = document.querySelector("#reset");
+const startRankingButton = document.querySelector("#start_contest");
+const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+var storedTutorials = Object.keys(sessionStorage);
+for (let i = 0; i < storedTutorials.length; i++) {
+    addtoTable(JSON.parse(sessionStorage.getItem(storedTutorials[i])));
+}
 
 
-btn.onclick = () => {
+addButton.onclick = () => {
     const name = document.querySelector('#name');
     const room = document.querySelector('#room');
     const time = document.querySelector('#time');
-    const day = document.querySelector('#date');
-    var d = new Date(day.value);
-    
-    let newTutorial = new tutorial(name.value, room.value, time.value, weekday[d.getDay()]);
-    tutorials.push(newTutorial); 
-    var tutDiv = writeTutorial(newTutorial);
+    const date = document.querySelector('#date');
+    const asDate = new Date(date.value);
 
-    console.log(tutDiv);
+    var newTutorial = new tutorial(name.value, room.value, time.value, weekday[asDate.getDay()]);
 
-    document.getElementsByClassName("tutorialTable")[0].appendChild(tutDiv);
-    sessionStorage.setItem("id" + tutorials.length, JSON.stringify(newTutorial));
+    var tutorialDiv = writeTutorial(newTutorial);
+    document.getElementsByClassName("tutorialTable")[0].appendChild(tutorialDiv);
+    sessionStorage.setItem(JSON.stringify(newTutorial), JSON.stringify(newTutorial));
     name.value = "";    
     room.value = "";
     time.value = "";
-    day.value = "";
-      
-    console.log(JSON.parse(sessionStorage.getItem("id1")));
+    date.value = "";
 }
 
 reset.onclick = () => {
@@ -49,9 +46,9 @@ reset.onclick = () => {
 }
 
 
-startContest.onclick = () => {
+startRankingButton.onclick = () => {
     if (Object.keys(sessionStorage).length <= 2) {
-        alter ("Please enter at least 3 tutorials.");
+        alert("Please enter at least 3 tutorials.");
         return;
     }
     document.location='swiss.html';
@@ -87,12 +84,6 @@ function writeTutorial(tutorial) {
     tutorialDiv.appendChild(tempElement);
 
     return tutorialDiv;
-}
-
-
-var tutorialsJson = Object.keys(sessionStorage);
-for (let i = 0; i < tutorialsJson.length; i++) {
-    addtoTable(JSON.parse(sessionStorage.getItem(tutorialsJson[i])));
 }
 
 function addtoTable(tutDiv) {
