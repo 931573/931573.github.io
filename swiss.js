@@ -213,7 +213,7 @@ var ourSwissTournament = new swissTournament();
 var firstTutorial = document.getElementById('firstTutorial');
 var secondTutorial = document.getElementById('secondTutorial');
 
-var gyroscope
+var gyroscope;
 try {
     gyroscope = new Gyroscope({ frequency: 60 });
 
@@ -227,21 +227,20 @@ if (gyroscope != null) {
 
     gyroscope.addEventListener("reading", (e) => {
         var data = gyroscope.x;
-        ourSwissTournament.firstTutorial.getElementsByClassName("title")[0].innerHTML = timer;
         timer++;
         if (timer < threshold) {
             return;
         }
         ourSwissTournament.secondTutorial.getElementsByClassName("title")[0].innerHTML = gyroscope.x;
-        ourSwissTournament.secondTutorial.getElementsByClassName("day")[0].innerHTML = gyroscope.x > 1.2;
-        if (data > 1.2) {
+        ourSwissTournament.firstTutorial.getElementsByClassName("title")[0].innerHTML = gyroscope.x > 1.2;
+        if (data > 0.2) {
             ourSwissTournament.secondTutorial.getElementsByClassName("title")[0].innerHTML = gyroscope.x;
-            ourSwissTournament.clickFirst();
+            gyroPlus();
             timer = 0;
         }
         
-        else if (data < -1.2) {
-            ourSwissTournament.clickSecond();
+        else if (data < -0.2) {
+            gyroNegative();
             timer = 0;
         }
     });
@@ -250,7 +249,13 @@ if (gyroscope != null) {
     document.getElementById("gyro").innerHTML = "Gyro choise is active.";
 }
 
+function gyroPlus() {
+    ourSwissTournament.clickFirst();
+}
 
+function gyroNegative() {
+    ourSwissTournament.clickSecond();
+}
 
 
 firstTutorial.onclick = () => {
