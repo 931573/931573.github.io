@@ -1,6 +1,6 @@
 /* This css decorates the display of tutorials in a flex grid layout responsivly */
 
-/* mobile devices*/
+/* mobile devices: 1 coloumn*/
 @media (max-device-width: 480px) {
     .tutorialTable {
         display: grid;
@@ -9,7 +9,7 @@
     }
 }
 
-/* Ipads */ 
+/* Ipads: 2 columns*/ 
 @media (min-device-width: 481px) and (max-device-width: 768px) {
     .tutorialTable {
         display: grid;
@@ -18,7 +18,7 @@
         grid-row-gap: 20px;
     }
 }
-/* laptops */
+/* laptops: 3 coloumns*/
 @media (min-device-width: 769px)  {
     .tutorialTable {
         display: grid;
