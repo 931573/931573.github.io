@@ -65,7 +65,7 @@ class swissTournament {
     showResult() {
     this.secondTutorial.remove();
     this.firstTutorial.remove();
-    
+    document.getElementById("gyro").remove;
     this.addStars();
     var resultDiv = document.getElementsByClassName("tutorialTable")[0];
     for (let i = 0; i < this.ranking.length; i ++) {
@@ -226,6 +226,7 @@ var threshold = 120;
 if (gyroscope != null) {
 
     gyroscope.addEventListener("reading", (e) => {
+        var data = gyroscope.x;
         ourSwissTournament.firstTutorial.getElementsByClassName("title")[0].innerHTML = gyroscope.x;
         timer++;
         if (timer < threshold) {
@@ -233,13 +234,13 @@ if (gyroscope != null) {
         }
         ourSwissTournament.secondTutorial.getElementsByClassName("title")[0].innerHTML = gyroscope.x;
         ourSwissTournament.secondTutorial.getElementsByClassName("time")[0].innerHTML = gyroscope.x > 1.2;
-        if (gyroscope.x > 1.2) {
+        if (data > 1.2) {
             ourSwissTournament.secondTutorial.getElementsByClassName("title")[0].innerHTML = gyroscope.x;
             ourSwissTournament.clickFirst();
             timer = 0;
         }
         
-        else if (gyroscope.x < -1.2) {
+        else if (data < -1.2) {
             ourSwissTournament.clickSecond();
             timer = 0;
         }
