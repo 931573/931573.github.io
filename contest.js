@@ -210,16 +210,20 @@ let gyroscope = new Gyroscope({ frequency: 60 });
 
 gyroscope.addEventListener("reading", (e) => {
     if (gyroscope.x > 0.2) {
-        firstTutorial.showResult();
+        positiveXGyro();
     }
     this.firstTutorial.getElementsByClassName("title")[0].innerHTML = gyroscope.x;
-
-  console.log(`Angular velocity along the X-axis ${gyroscope.x}`);
-  console.log(`Angular velocity along the Y-axis ${gyroscope.y}`);
-  console.log(`Angular velocity along the Z-axis ${gyroscope.z}`);
 });
 gyroscope.start();
 
+
+function positiveXGyro(){
+    ourSwissTournament.clickFirst();
+}
+function negativeXGyro() {
+    ourSwissTournament.clickSecond();
+}
+ 
 
 firstTutorial.onclick = () => {
     ourSwissTournament.clickFirst();
