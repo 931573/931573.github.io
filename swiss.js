@@ -183,7 +183,7 @@ function writeTutorial(tutorial) {
         tempElement.appendChild(document.createTextNode(" "));
     }
     else {
-        tempElement.appendChild(document.createTextNode(tutorial.stars));
+        tempElement.appendChild(document.createTextNode("Stars: " +tutorial.stars));
     }
     tutorialDiv.appendChild(tempElement);
 
@@ -245,6 +245,8 @@ if (gyroscope != null) {
         }
     });
     gyroscope.start();
+
+    document.getElementById("gyro").innerHTML = "Gyro choise is active.";
 }
 
 
