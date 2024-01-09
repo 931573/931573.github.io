@@ -1,3 +1,4 @@
+// class to encapsulate a tutorial
 class tutorial{
     constructor(title, room, time, day) {
         this.title = title;
@@ -40,7 +41,7 @@ addButton.onclick = () => {
         alert("Tutorial already added");
         return;
     }
-    var tutorialDiv = writeTutorial(newTutorial);
+    var tutorialDiv = createTutorialDiv(newTutorial);
     sessionStorage.setItem(JSON.stringify(newTutorial), JSON.stringify(newTutorial));
     document.getElementsByClassName("tutorialTable")[0].appendChild(tutorialDiv);
     name.value = "";    
@@ -63,7 +64,7 @@ startRankingButton.onclick = () => {
     document.location='swiss.html';
 }
 
-function writeTutorial(tutorial) {
+function createTutorialDiv(tutorial) {
     var tutorialDiv = document.createElement("div");
     tutorialDiv.setAttribute("class","tutorial");
 
@@ -96,5 +97,5 @@ function writeTutorial(tutorial) {
 }
 
 function addtoTable(tutDiv) {
-    document.getElementsByClassName("tutorialTable")[0].appendChild(writeTutorial(tutDiv));
+    document.getElementsByClassName("tutorialTable")[0].appendChild(createTutorialDiv(tutDiv));
 }
