@@ -176,10 +176,17 @@ function writeTutorial(tutorial) {
     tempElement.appendChild(document.createTextNode(tutorial.title));
     tutorialDiv.appendChild(tempElement);
 
+
     tempElement = document.createElement("p");
     tempElement.setAttribute("class", "stars inner");
-    tempElement.appendChild(document.createTextNode(tutorial.stars));
+    if (tutorial.stars == 0) {
+        tempElement.appendChild(document.createTextNode(" "));
+    }
+    else {
+        tempElement.appendChild(document.createTextNode(tutorial.stars));
+    }
     tutorialDiv.appendChild(tempElement);
+
 
     tempElement = document.createElement("p");
     tempElement.setAttribute("class", "day inner");
@@ -208,12 +215,24 @@ var secondTutorial = document.getElementById('secondTutorial');
 
 let gyroscope = new Gyroscope({ frequency: 60 });
 
+var timer = 0;
+var threshold = 120;
+
 gyroscope.addEventListener("reading", (e) => {
+    
+    timer++;
+    
+    if (timer < threshold) {
+        return;
+    }
     if (gyroscope.x > 1.2) {
         ourSwissTournament.clickFirst();
+        timer = 0;
     }
+    
     else if (gyroscope.x < -1.2) {
         ourSwissTournament.clickSecond();
+        timer = 0;
     }
 });
 gyroscope.start();

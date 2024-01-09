@@ -1,9 +1,11 @@
 body {
-    display:flex;
+    padding-left: 5%;
+    padding-right: 5%;
+    display: flex;
     flex-direction: column;
-    background-color: #02001d;  
-align-items:center;
-}
+    grid-row-gap: 20px;
+    grid-column-gap: 30px; 
+    background-color: #02001d;  }
 
 #submission {
     border-radius: 25px;

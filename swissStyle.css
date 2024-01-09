@@ -1,0 +1,39 @@
+@media (max-device-width: 500px) {
+    body {
+        padding-left: 5%;
+        padding-right: 5%;
+        display: grid;
+        grid-row-gap: 20px;
+        grid-template-columns: 1fr;
+        justify-content: center;
+        grid-column-gap: 30px;
+        background-color: #02001d;  
+    }
+
+}
+
+@media (min-device-width: 501px) {
+    body {
+        padding-left: 5%;
+        padding-right: 5%;
+        display: flex;
+        flex-direction: column;
+        grid-row-gap: 20px;
+        grid-column-gap: 30px; 
+        background-color: #02001d;  
+    }
+}
+
+#firstTutorial {
+    grid-column: span 3;
+    min-height: 200px;
+}
+
+
+#secondTutorial {
+    grid-column: span 3;
+    min-height: 200px;
+}
+
+
+
