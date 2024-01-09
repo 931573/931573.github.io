@@ -67,7 +67,7 @@ class swissTournament {
     this.firstTutorial.remove();
     
     this.addStars();
-    var resultDiv = document.body;
+    var resultDiv = document.getElementsByClassName("tutorialTable")[0];
     for (let i = 0; i < this.ranking.length; i ++) {
         resultDiv.appendChild(writeTutorial(this.ranking[i]));
         }
@@ -213,29 +213,37 @@ var ourSwissTournament = new swissTournament();
 var firstTutorial = document.getElementById('firstTutorial');
 var secondTutorial = document.getElementById('secondTutorial');
 
-let gyroscope = new Gyroscope({ frequency: 60 });
+var gyroscope
+try {
+    gyroscope = new Gyroscope({ frequency: 60 });
+
+} catch (e) {
+}
+if (gyroscope != null) {
+
+    gyroscope.addEventListener("reading", (e) => {
+    
+        timer++;
+        
+        if (timer < threshold) {
+            return;
+        }
+        if (gyroscope.x > 1.2) {
+            ourSwissTournament.clickFirst();
+            timer = 0;
+        }
+        
+        else if (gyroscope.x < -1.2) {
+            ourSwissTournament.clickSecond();
+            timer = 0;
+        }
+    });
+    gyroscope.start();
+}
 
 var timer = 0;
 var threshold = 120;
 
-gyroscope.addEventListener("reading", (e) => {
-    
-    timer++;
-    
-    if (timer < threshold) {
-        return;
-    }
-    if (gyroscope.x > 1.2) {
-        ourSwissTournament.clickFirst();
-        timer = 0;
-    }
-    
-    else if (gyroscope.x < -1.2) {
-        ourSwissTournament.clickSecond();
-        timer = 0;
-    }
-});
-gyroscope.start();
 
 
 firstTutorial.onclick = () => {
