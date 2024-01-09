@@ -1,21 +1,15 @@
+/* submission menu for small devices*/
 @media (max-device-width: 560px) {
     #submission {
         border-radius: 25px;
         padding: 20px; 
+        /* we use flex coulum here*/
         display: flex;
         flex-flow: column;
         background-image: linear-gradient(to bottom right, hsla(196, 79%, 35%, 0.953), rgba(2, 188, 110, 0.945));
-    }
-
-    #submission > h1 {
-        font-family: Arial;
-        color: white;
-        font-size: xx-large;
-        text-align: center;
-        margin-top: 30px;
-        margin-bottom: 30px;
-    }
-    
+    }    
+    /* date and time are now centered, alone in a row */
+    /* we also increase padding for better touch navigation */
     #date {
         padding: 3em;
         align-self: center;
@@ -38,25 +32,21 @@
     }
     
 }
-
+/* submssino menu for bigger devices*/
 @media (min-device-width: 561px)  {
     #submission {
         border-radius: 25px;
         padding: 20px; 
+        /* we use flex grid here*/
         display: grid;
         grid-template-columns: 1fr 1fr;
         background-image: linear-gradient(to bottom right, hsla(196, 79%, 35%, 0.953), rgba(2, 188, 110, 0.945));
     }
-    #submission > h1 {
-        font-family: Arial;
-        color: white;
-        font-size: xx-large;
-        grid-column: 1 / span 2;
-        text-align: center;
-        margin-top: 30px;
-        margin-bottom: 30px;
-    }
 
+    #submission > h1 {
+        grid-column: 1 / span 2;
+    }
+    
     #date {
         margin-bottom: 50px;
         font-size: 2.5em;
@@ -73,6 +63,7 @@
     }
 }
 
+
 body {
     padding-left: 5%;
     padding-right: 5%;
@@ -80,6 +71,15 @@ body {
     flex-direction: column;
     grid-row-gap: 20px;
     background-color: #02001d;  
+}
+
+#submission > h1 {
+    font-family: Arial;
+    color: white;
+    font-size: xx-large;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 input {
