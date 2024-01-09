@@ -227,7 +227,7 @@ if (gyroscope != null) {
 
     gyroscope.addEventListener("reading", (e) => {
         var data = gyroscope.x;
-        ourSwissTournament.firstTutorial.getElementsByClassName("title")[0].innerHTML = gyroscope.x;
+        ourSwissTournament.firstTutorial.getElementsByClassName("title")[0].innerHTML = timer;
         timer++;
         if (timer < threshold) {
             return;
