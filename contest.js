@@ -114,7 +114,8 @@ class swissTournament {
 
     playGame() {
         if (this.pointer == this.uppercutoff-1) {
-            let randomOpponent = Math.floor((Math.random() * this.ranking.length)-1);
+            let randomOpponent = Math.floor((Math.random() * this.ranking.length)-2)
+            randomOpponent = Math.max(0,randomOpponent);
             this.secondTutorial.getElementsByClassName("title")[0].innerHTML = this.ranking[randomOpponent].title;
             this.secondTutorial.getElementsByClassName("day")[0].innerHTML = this.ranking[randomOpponent].day + " "+ this.ranking[this.pointer+1].time;
             this.secondTutorial.getElementsByClassName("room")[0].innerHTML = this.ranking[randomOpponent].room;
@@ -204,6 +205,20 @@ var ourSwissTournament = new swissTournament();
 
 var firstTutorial = document.getElementById('firstTutorial');
 var secondTutorial = document.getElementById('secondTutorial');
+
+let gyroscope = new Gyroscope({ frequency: 60 });
+
+gyroscope.addEventListener("reading", (e) => {
+    if (gyroscope.x > 0.2) {
+        firstTutorial.onclick;
+    }
+  console.log(`Angular velocity along the X-axis ${gyroscope.x}`);
+  console.log(`Angular velocity along the Y-axis ${gyroscope.y}`);
+  console.log(`Angular velocity along the Z-axis ${gyroscope.z}`);
+});
+gyroscope.start();
+
+
 firstTutorial.onclick = () => {
     ourSwissTournament.clickFirst();
 }

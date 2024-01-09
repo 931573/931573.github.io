@@ -22,7 +22,7 @@ var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
 btn.onclick = () => {
     const name = document.querySelector('#name');
     const room = document.querySelector('#room');
-    const time = document.querySelector('#appt');
+    const time = document.querySelector('#time');
     const day = document.querySelector('#date');
     var d = new Date(day.value);
 
@@ -41,6 +41,9 @@ btn.onclick = () => {
 }
 
 startContest.onclick = () => {
+    if (Object.keys(sessionStorage).length <= 2) {
+        alter ("Please enter at least 3 tutorials.");
+        return;
+    }
     document.location='contest.html';
-    alert("hihi");
 }

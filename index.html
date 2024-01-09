@@ -6,6 +6,8 @@
         <!--<script src = "model.js"></script>-->
         <title>Tutorial calculator</title>
         <script defer src="model.js"></script>
+        <link rel= "stylesheet" href="style.css">
+
 
     </head>
     <header>
@@ -17,12 +19,17 @@
 
 
     <body>
+        <div id = "submission">
+            <h1>Enter your tutorials</h1>
+            <input type="text" id="name" placeholder="name">
+            <input type="text" id="room" placeholder="room">
+            <input type="date" id="date" placeholder="">
+            <input type="time" id="time" min="08:00" max="19:00" required />
+            <button>Add Tutorial</button>
+            <button id = "start_contest">Start Contest</button>
+        </div>
+        <div id = "tutorials">
 
-        <input type="text" id="room">
-        <input type="text" id="name">
-        <input type="date" id="date">
-        <input type="time" id="appt" min="08:00" max="19:00" required />
-        <button>add tutorial</button> <br> <br>
-        <button id = "start_contest"> start contest</button>
+        </div>
     </body>
 </html>

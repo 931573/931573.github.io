@@ -7,6 +7,7 @@
         grid-template-columns: 1fr;
         justify-content: center;
         grid-column-gap: 30px;
+        background-color: #02001d;  
     }
 
 }
@@ -18,7 +19,6 @@
         display: grid;
         grid-row-gap: 20px;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
         justify-content: center;
         grid-column-gap: 30px; 
         background-color: #02001d;  
